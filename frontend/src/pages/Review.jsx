@@ -186,13 +186,16 @@ function Review() {
 
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:8080/api/review", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        "https://autoshield-ai-backend.onrender.com/api/review",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
         },
-        body: formData,
-      });
+      );
 
       const data = await response.json();
 

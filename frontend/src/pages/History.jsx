@@ -8,7 +8,7 @@ function History() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:8080/api/reviews", {
+    fetch("https://autoshield-ai-backend.onrender.com/api/reviews", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -27,12 +27,15 @@ function History() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(`http://localhost:8080/api/reviews/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `https://autoshield-ai-backend.onrender.com/api/reviews/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
 
       const data = await response.json();
 

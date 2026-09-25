@@ -14,7 +14,7 @@ function InterviewQuestions() {
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-          "http://localhost:8080/api/interview-questions",
+          "https://autoshield-ai-backend.onrender.com/api/interview-questions",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -52,7 +52,7 @@ function InterviewQuestions() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:8080/api/interview-questions",
+        "https://autoshield-ai-backend.onrender.com/api/interview-questions",
         {
           method: "POST",
           headers: {
