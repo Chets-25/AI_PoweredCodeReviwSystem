@@ -15,7 +15,7 @@ connectDB();
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://autoshield-ai-chetan.onrender.com",
   }),
 );
 
