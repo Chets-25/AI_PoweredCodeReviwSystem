@@ -1,0 +1,138 @@
+.notfound-page {
+  min-height: calc(100vh - 72px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  overflow: hidden;
+  background: #070b14;
+  color: #f8fafc;
+}
+
+.notfound-glow {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.notfound-glow-one {
+  top: 10%;
+  left: 10%;
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.notfound-glow-two {
+  right: 10%;
+  bottom: 5%;
+  background: rgba(34, 211, 238, 0.08);
+}
+
+.notfound-card {
+  position: relative;
+  z-index: 1;
+  width: min(650px, 100%);
+  padding: 55px 35px;
+  text-align: center;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 24px;
+  background: rgba(15, 23, 42, 0.68);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(14px);
+}
+
+.notfound-code {
+  margin-bottom: 10px;
+  font-size: clamp(80px, 15vw, 130px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -7px;
+  background: linear-gradient(90deg, #818cf8, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.notfound-badge {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 20px;
+  padding: 7px 12px;
+  border: 1px solid rgba(99, 102, 241, 0.28);
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.08);
+  color: #a5b4fc;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.notfound-badge span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.7);
+}
+
+.notfound-card h1 {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 42px);
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.notfound-card h1 span {
+  color: #818cf8;
+}
+
+.notfound-card p {
+  max-width: 500px;
+  margin: 18px auto 0;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.notfound-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  padding: 13px 20px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #6366f1, #4f46e5);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(79, 70, 229, 0.25);
+  transition: 0.25s ease;
+}
+
+.notfound-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(79, 70, 229, 0.35);
+}
+
+.notfound-button span {
+  font-size: 17px;
+}
+
+@media (max-width: 520px) {
+  .notfound-page {
+    padding: 40px 16px;
+  }
+
+  .notfound-card {
+    padding: 45px 22px;
+  }
+
+  .notfound-code {
+    letter-spacing: -4px;
+  }
+}

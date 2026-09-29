@@ -12,7 +12,10 @@ function Navbar() {
   return (
     <nav className="navbar">
       <Link to="/" className="navbar-logo">
-        AI Code Review
+        <span className="logo-icon">⌬</span>
+        <span className="logo-text">
+          AutoShield <span>AI</span>
+        </span>
       </Link>
 
       <div className="navbar-links">

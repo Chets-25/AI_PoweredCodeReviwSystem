@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 
 function Register() {
@@ -44,54 +44,101 @@ function Register() {
 
   return (
     <main className="register-page">
-      <div className="register-card">
+      <div className="register-background">
+        <div className="register-glow register-glow-one"></div>
+        <div className="register-glow register-glow-two"></div>
+      </div>
+
+      <section className="register-card">
+        <div className="register-brand">
+          <div className="register-logo">⌬</div>
+
+          <span>
+            AutoShield <strong>AI</strong>
+          </span>
+        </div>
+
         <div className="register-header">
-          <div className="register-icon">👤</div>
+          <div className="register-badge">
+            <span></span>
+            GET STARTED
+          </div>
 
-          <h1>Create Account</h1>
+          <h1>
+            Create <span>Account</span>
+          </h1>
 
-          <p>Register to use AI Code Review</p>
+          <p>Join AutoShield AI and start analyzing your code with AI.</p>
         </div>
 
         <form onSubmit={handleRegister} className="register-form">
           <div className="input-group">
-            <label>Name</label>
-            <input
-              type="text"
-              placeholder="Enter your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+            <label htmlFor="name">Full Name</label>
+
+            <div className="input-wrapper">
+              <span className="input-icon">✦</span>
+
+              <input
+                id="name"
+                type="text"
+                placeholder="Enter your full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
           </div>
 
           <div className="input-group">
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <label htmlFor="email">Email Address</label>
+
+            <div className="input-wrapper">
+              <span className="input-icon">@</span>
+
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
           </div>
 
           <div className="input-group">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Create a password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <label htmlFor="password">Password</label>
+
+            <div className="input-wrapper">
+              <span className="input-icon">•••</span>
+
+              <input
+                id="password"
+                type="password"
+                placeholder="Create a password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
           </div>
 
           <button type="submit" className="register-button">
-            Create Account
+            <span>Create AutoShield Account</span>
+            <span className="button-arrow">→</span>
           </button>
+
+          <p className="login-link">
+            Already have an account?
+            <Link to="/login"> Login here</Link>
+          </p>
         </form>
-      </div>
+
+        <div className="register-security">
+          <span>✓</span>
+          <p>Your account information is securely protected.</p>
+        </div>
+      </section>
     </main>
   );
 }

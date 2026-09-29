@@ -46,47 +46,88 @@ function Login() {
 
   return (
     <main className="login-page">
-      <div className="login-card">
+      <div className="login-background">
+        <div className="login-glow login-glow-one"></div>
+        <div className="login-glow login-glow-two"></div>
+      </div>
+
+      <section className="login-card">
+        <div className="login-brand">
+          <div className="login-logo">⌬</div>
+
+          <span>
+            AutoShield <strong>AI</strong>
+          </span>
+        </div>
+
         <div className="login-header">
-          <div className="login-icon">🔐</div>
+          <div className="login-badge">
+            <span></span>
+            SECURE ACCESS
+          </div>
 
-          <h1>Welcome Back</h1>
+          <h1>
+            Welcome <span>Back</span>
+          </h1>
 
-          <p>Login to continue to AI Code Review</p>
+          <p>Sign in to continue your AI-powered code analysis journey.</p>
         </div>
 
         <form onSubmit={handleLogin} className="login-form">
           <div className="input-group">
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <label htmlFor="email">Email Address</label>
+
+            <div className="input-wrapper">
+              <span className="input-icon">@</span>
+
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
           </div>
 
           <div className="input-group">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <label htmlFor="password">Password</label>
+
+            <div className="input-wrapper">
+              <span className="input-icon">•••</span>
+
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
           </div>
 
           <button type="submit" className="login-button">
-            Login
+            <span>Login to AutoShield</span>
+            <span className="button-arrow">→</span>
           </button>
 
+          <div className="login-divider">
+            <span>OR</span>
+          </div>
+
           <p className="register-link">
-            Do not have an account? <Link to="/register">Create Account</Link>
+            New to AutoShield AI?
+            <Link to="/register"> Create an account</Link>
           </p>
         </form>
-      </div>
+
+        <div className="login-security">
+          <span>✓</span>
+          <p>Your account information is securely protected.</p>
+        </div>
+      </section>
     </main>
   );
 }

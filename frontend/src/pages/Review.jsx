@@ -26,7 +26,9 @@ function Review() {
     doc.text("AI-powered code analysis report", 20, 40);
 
     doc.text(`Code Quality Score: ${reviewResult.aiReview.score}/100`, 20, 55);
+
     doc.text(`Programming Language: ${reviewResult.aiReview.language}`, 20, 65);
+
     doc.text("Overall Assessment:", 20, 80);
 
     const assessment = doc.splitTextToSize(
@@ -60,7 +62,6 @@ function Review() {
       }
     });
 
-    // Security
     doc.setFontSize(14);
     doc.text("Security", 20, y);
 
@@ -77,7 +78,6 @@ function Review() {
 
     y += securityLines.length * 7 + 10;
 
-    // Performance
     doc.setFontSize(14);
     doc.text("Performance", 20, y);
 
@@ -99,7 +99,6 @@ function Review() {
       y = 20;
     }
 
-    // Suggestions
     doc.setFontSize(14);
     doc.text("Suggestions", 20, y);
 
@@ -122,7 +121,6 @@ function Review() {
       }
     });
 
-    // Best Practices
     doc.setFontSize(14);
     doc.text("Best Practices", 20, y);
 
@@ -145,7 +143,6 @@ function Review() {
       }
     });
 
-    // What Was Done Well
     doc.setFontSize(14);
     doc.text("What Was Done Well", 20, y);
 
@@ -214,118 +211,246 @@ function Review() {
 
   return (
     <main className="review-page">
+      <section className="review-hero">
+        <div className="review-heading">
+          <div className="review-badge">
+            <span className="badge-dot"></span>
+            AI Code Intelligence
+          </div>
+
+          <h1>
+            Review Your Code.
+            <span> Improve With AI.</span>
+          </h1>
+
+          <p>
+            Upload your source code and let AutoShield AI analyze bugs,
+            security, performance, and code quality.
+          </p>
+        </div>
+      </section>
+
       <section className="review-container">
-        <h1>Code Review</h1>
+        <div className="upload-card">
+          <div className="card-header">
+            <div>
+              <span className="card-label">CODE ANALYZER</span>
+              <h2>Start a new review</h2>
+              <p>
+                Select your programming language and upload your source file.
+              </p>
+            </div>
 
-        <p>Upload your code and get AI-powered code analysis.</p>
+            <div className="card-icon">⌬</div>
+          </div>
 
-        <div className="review-card">
-          <label htmlFor="language">Programming Language</label>
+          <div className="form-grid">
+            <div className="input-group">
+              <label htmlFor="language">Programming Language</label>
 
-          <select
-            id="language"
-            className="language-select"
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-          >
-            <option value="javascript">JavaScript</option>
-            <option value="python">Python</option>
-            <option value="java">Java</option>
-            <option value="cpp">C++</option>
-          </select>
+              <select
+                id="language"
+                className="language-select"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+              >
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="cpp">C++</option>
+              </select>
+            </div>
 
-          <label htmlFor="codeFile">Upload Your Code</label>
+            <div className="input-group">
+              <label htmlFor="codeFile">Upload Your Code</label>
 
-          <input
-            id="codeFile"
-            type="file"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
+              <div className="file-upload">
+                <input
+                  id="codeFile"
+                  type="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+
+                <label htmlFor="codeFile" className="file-upload-label">
+                  <span className="upload-icon">↑</span>
+
+                  <span>
+                    <strong>{file ? file.name : "Choose a code file"}</strong>
+
+                    <small>
+                      {file
+                        ? "File selected successfully"
+                        : "Click to browse your files"}
+                    </small>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
 
           <button
             className="review-button"
             onClick={handleReview}
             disabled={loading}
           >
-            {loading ? "Reviewing..." : "Review Code"}
+            {loading ? (
+              <>
+                <span className="loading-spinner"></span>
+                Analyzing Code...
+              </>
+            ) : (
+              <>
+                Analyze Code
+                <span>→</span>
+              </>
+            )}
           </button>
 
-          {reviewResult && (
-            <div className="review-result">
-              <h2>AI Code Review 🤖</h2>
+          <div className="analysis-info">
+            <span>✦</span>
+            AI analysis checks bugs, security, performance and quality.
+          </div>
+        </div>
 
-              {/* Code Quality Score */}
-              <div className="result-section score-section">
-                <h3>Code Quality Score</h3>
+        {reviewResult && (
+          <div className="review-result">
+            <div className="result-header">
+              <div>
+                <span className="card-label">ANALYSIS REPORT</span>
+                <h2>AI Code Review</h2>
+                <p>Detailed feedback generated by AutoShield AI.</p>
+              </div>
 
-                <div className="score-value">
-                  {reviewResult.aiReview.score}/100
+              <div className="result-status">
+                <span className="status-dot"></span>
+                Analysis Complete
+              </div>
+            </div>
+
+            <div className="score-overview">
+              <div className="score-circle">
+                <div>
+                  <strong>{reviewResult.aiReview.score}</strong>
+                  <span>/100</span>
                 </div>
+              </div>
+
+              <div className="score-info">
+                <span className="score-label">CODE QUALITY SCORE</span>
+
+                <h3>
+                  {reviewResult.aiReview.score >= 80
+                    ? "Strong Code Quality"
+                    : reviewResult.aiReview.score >= 60
+                      ? "Good, With Improvements Needed"
+                      : "Needs Improvement"}
+                </h3>
 
                 <p>{reviewResult.aiReview.reason}</p>
               </div>
 
-              {/* Language */}
-              <div className="result-section">
-                <h3>Programming Language</h3>
-                <p>{reviewResult.aiReview.language}</p>
+              <div className="language-badge">
+                <span>Language</span>
+                <strong>{reviewResult.aiReview.language}</strong>
               </div>
+            </div>
 
-              {/* Bugs */}
+            <div className="result-grid">
               <div className="result-section">
-                <h3>Bugs</h3>
+                <div className="section-title">
+                  <span className="section-icon bug-icon">!</span>
+                  <div>
+                    <span>CODE ANALYSIS</span>
+                    <h3>Bugs</h3>
+                  </div>
+                </div>
 
                 {reviewResult.aiReview.bugs.length === 0 ? (
-                  <p>No bugs found. Your code looks good.</p>
+                  <div className="success-message">
+                    <span>✓</span>
+                    <p>No bugs found. Your code looks good.</p>
+                  </div>
                 ) : (
-                  reviewResult.aiReview.bugs.map((bug, index) => (
-                    <div className="bug-card" key={index}>
-                      <p>
-                        <strong>Severity:</strong> {bug.severity}
-                      </p>
+                  <div className="bug-list">
+                    {reviewResult.aiReview.bugs.map((bug, index) => (
+                      <div className="bug-card" key={index}>
+                        <div className="bug-top">
+                          <span className="bug-number">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
 
-                      <p>
-                        <strong>Issue:</strong> {bug.issue}
-                      </p>
+                          <span className="severity-badge">{bug.severity}</span>
+                        </div>
 
-                      <p>
-                        <strong>Why it matters:</strong> {bug.whyItMatters}
-                      </p>
+                        <p>
+                          <strong>Issue</strong>
+                          {bug.issue}
+                        </p>
 
-                      <p>
-                        <strong>Beginner Explanation:</strong>{" "}
-                        {bug.beginnerExplanation}
-                      </p>
+                        <p>
+                          <strong>Why it matters</strong>
+                          {bug.whyItMatters}
+                        </p>
 
-                      <p>
-                        <strong>Solution:</strong> {bug.solution}
-                      </p>
-                    </div>
-                  ))
+                        <p>
+                          <strong>Beginner explanation</strong>
+                          {bug.beginnerExplanation}
+                        </p>
+
+                        <div className="solution-box">
+                          <strong>Solution</strong>
+                          <p>{bug.solution}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
 
-              {/* Code Quality */}
               <div className="result-section">
-                <h3>Code Quality</h3>
+                <div className="section-title">
+                  <span className="section-icon">✦</span>
+                  <div>
+                    <span>QUALITY</span>
+                    <h3>Code Quality</h3>
+                  </div>
+                </div>
+
                 <p>{reviewResult.aiReview.codeQuality}</p>
               </div>
 
-              {/* Security */}
-              <div className="result-section security-section">
-                <h3>Security</h3>
+              <div className="result-section">
+                <div className="section-title">
+                  <span className="section-icon security-icon">◇</span>
+                  <div>
+                    <span>PROTECTION</span>
+                    <h3>Security</h3>
+                  </div>
+                </div>
+
                 <p>{reviewResult.aiReview.security}</p>
               </div>
 
-              {/* Performance */}
-              <div className="result-section performance-section">
-                <h3>Performance</h3>
+              <div className="result-section">
+                <div className="section-title">
+                  <span className="section-icon performance-icon">↗</span>
+                  <div>
+                    <span>OPTIMIZATION</span>
+                    <h3>Performance</h3>
+                  </div>
+                </div>
+
                 <p>{reviewResult.aiReview.performance}</p>
               </div>
 
-              {/* Suggestions */}
               <div className="result-section">
-                <h3>Suggestions</h3>
+                <div className="section-title">
+                  <span className="section-icon">✦</span>
+                  <div>
+                    <span>RECOMMENDATIONS</span>
+                    <h3>Suggestions</h3>
+                  </div>
+                </div>
 
                 <ul className="suggestion-list">
                   {reviewResult.aiReview.suggestions.map(
@@ -336,9 +461,14 @@ function Review() {
                 </ul>
               </div>
 
-              {/* Best Practices */}
               <div className="result-section">
-                <h3>Best Practices</h3>
+                <div className="section-title">
+                  <span className="section-icon">✓</span>
+                  <div>
+                    <span>DEVELOPMENT</span>
+                    <h3>Best Practices</h3>
+                  </div>
+                </div>
 
                 <ul className="practice-list">
                   {reviewResult.aiReview.bestPractices.map(
@@ -349,9 +479,14 @@ function Review() {
                 </ul>
               </div>
 
-              {/* What Was Done Well */}
               <div className="result-section">
-                <h3>What Was Done Well</h3>
+                <div className="section-title">
+                  <span className="section-icon">★</span>
+                  <div>
+                    <span>POSITIVE FINDINGS</span>
+                    <h3>What Was Done Well</h3>
+                  </div>
+                </div>
 
                 <ul className="practice-list">
                   {reviewResult.aiReview.whatWasDoneWell.map((item, index) => (
@@ -360,38 +495,49 @@ function Review() {
                 </ul>
               </div>
 
-              {/* Overall Assessment */}
               <div className="result-section overall-section">
-                <h3>Overall Assessment</h3>
+                <div className="section-title">
+                  <span className="section-icon">◈</span>
+                  <div>
+                    <span>AI SUMMARY</span>
+                    <h3>Overall Assessment</h3>
+                  </div>
+                </div>
+
                 <p>{reviewResult.aiReview.overallAssessment}</p>
               </div>
+            </div>
 
-              {/* Download PDF */}
-              <div className="result-section">
-                <button className="review-button" onClick={downloadPDF}>
-                  📄 Download PDF Report
-                </button>
+            <div className="download-section">
+              <div>
+                <span className="card-label">REPORT EXPORT</span>
+                <h3>Save your analysis</h3>
+                <p>Download a PDF report of this code review.</p>
               </div>
 
-              {/* Backend Response */}
-              <div className="result-section">
-                <h3>Message</h3>
+              <button className="download-button" onClick={downloadPDF}>
+                📄 Download PDF Report
+              </button>
+            </div>
+
+            <div className="technical-details">
+              <div>
+                <span>MESSAGE</span>
                 <p>{reviewResult.message}</p>
               </div>
 
-              <div className="result-section">
-                <h3>Status</h3>
+              <div>
+                <span>STATUS</span>
                 <p>{reviewResult.status}</p>
               </div>
 
-              {/* Uploaded Code */}
-              <div className="result-section">
-                <h3>Uploaded Code</h3>
+              <div className="uploaded-code">
+                <span>UPLOADED CODE</span>
                 <pre>{reviewResult.code || reviewResult.uploadedCode}</pre>
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </section>
     </main>
   );

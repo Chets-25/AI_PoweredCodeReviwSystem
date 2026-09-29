@@ -37,40 +37,125 @@ function Profile() {
   }, []);
 
   if (loading) {
-    return <p>Loading profile...</p>;
+    return (
+      <main className="profile-page">
+        <div className="profile-loading">
+          <span className="profile-spinner"></span>
+          <p>Loading profile...</p>
+        </div>
+      </main>
+    );
   }
 
   if (!user) {
-    return <p>Failed to load profile.</p>;
+    return (
+      <main className="profile-page">
+        <div className="profile-error">
+          <div className="error-icon">!</div>
+          <h2>Unable to load profile</h2>
+          <p>Please try refreshing the page.</p>
+        </div>
+      </main>
+    );
   }
 
   return (
     <main className="profile-page">
-      <section className="profile-card">
-        <div className="profile-header">
-          <div className="profile-avatar">
-            {user.name.charAt(0).toUpperCase()}
+      <section className="profile-container">
+        {/* Header */}
+        <div className="profile-title">
+          <div className="profile-badge">
+            <span></span>
+            ACCOUNT
           </div>
 
-          <h1>{user.name}</h1>
-          <p>AutoShield AI User</p>
+          <h1>
+            Your <span>Profile</span>
+          </h1>
+
+          <p>Manage and view your AutoShield AI account information.</p>
         </div>
 
-        <div className="profile-info">
-          <div className="profile-item">
-            <span>Full Name</span>
-            <strong>{user.name}</strong>
+        {/* Profile Card */}
+        <section className="profile-card">
+          <div className="profile-top">
+            <div className="profile-avatar">
+              {user.name.charAt(0).toUpperCase()}
+            </div>
+
+            <div className="profile-heading">
+              <div className="profile-name-row">
+                <h2>{user.name}</h2>
+
+                <span className="active-badge">
+                  <span></span>
+                  Active
+                </span>
+              </div>
+
+              <p>AutoShield AI User</p>
+            </div>
           </div>
 
-          <div className="profile-item">
-            <span>Email Address</span>
-            <strong>{user.email}</strong>
+          <div className="profile-divider"></div>
+
+          {/* Account Information */}
+          <div className="profile-section-header">
+            <div>
+              <span className="section-label">ACCOUNT DETAILS</span>
+              <h3>Personal Information</h3>
+            </div>
           </div>
 
-          <div className="profile-item">
-            <span>Member Since</span>
-            <strong>{new Date(user.createdAt).toLocaleDateString()}</strong>
+          <div className="profile-info">
+            <div className="profile-item">
+              <div className="profile-item-icon">@</div>
+
+              <div>
+                <span>Full Name</span>
+                <strong>{user.name}</strong>
+              </div>
+            </div>
+
+            <div className="profile-item">
+              <div className="profile-item-icon">@</div>
+
+              <div>
+                <span>Email Address</span>
+                <strong>{user.email}</strong>
+              </div>
+            </div>
+
+            <div className="profile-item">
+              <div className="profile-item-icon">◷</div>
+
+              <div>
+                <span>Member Since</span>
+                <strong>{new Date(user.createdAt).toLocaleDateString()}</strong>
+              </div>
+            </div>
+
+            <div className="profile-item">
+              <div className="profile-item-icon">✓</div>
+
+              <div>
+                <span>Account Status</span>
+                <strong className="status-text">Verified Account</strong>
+              </div>
+            </div>
           </div>
+        </section>
+
+        {/* Account Footer */}
+        <div className="profile-footer-card">
+          <div className="footer-icon">&lt;/&gt;</div>
+
+          <div>
+            <h3>AutoShield AI</h3>
+            <p>AI-powered code analysis and interview preparation platform.</p>
+          </div>
+
+          <span className="profile-version">AI PLATFORM</span>
         </div>
       </section>
     </main>

@@ -6,8 +6,8 @@ function InterviewQuestions() {
   const [questions, setQuestions] = useState(null);
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [openHistory, setOpenHistory] = useState(null);
 
-  // Fetch saved interview question history from MongoDB
   useEffect(() => {
     async function fetchHistory() {
       try {
@@ -72,14 +72,14 @@ function InterviewQuestions() {
         throw new Error(data.message || "Something went wrong");
       }
 
-      // Show newly generated questions
-      setQuestions(data.questions.questions);
+      const generatedQuestions = data.questions.questions;
 
-      // Add newly generated questions to history immediately
+      setQuestions(generatedQuestions);
+
       setHistory((prev) => [
         {
           fileName: file.name,
-          questions: data.questions.questions,
+          questions: generatedQuestions,
         },
         ...prev,
       ]);
@@ -91,78 +91,122 @@ function InterviewQuestions() {
     }
   }
 
+  function toggleHistory(index) {
+    setOpenHistory((current) => (current === index ? null : index));
+  }
+
   return (
     <main className="interview-page">
       <section className="interview-container">
-        {/* Header */}
+        {/* Hero */}
         <div className="interview-header">
-          <span className="feature-badge">🤖 AI Powered</span>
+          <div className="interview-badge">
+            <span className="badge-dot"></span>
+            AI INTERVIEW PREP
+          </div>
 
-          <h1>AI Interview Question Generator</h1>
+          <h1>
+            Turn Your Code Into
+            <span> Interview Questions.</span>
+          </h1>
 
           <p>
-            Upload your code and let AI generate interview questions based on
-            your actual code.
+            Upload your source code and let AutoShield AI create personalized
+            interview questions based on your actual implementation.
           </p>
         </div>
 
-        {/* Upload Card */}
-        <div className="upload-card">
-          <div className="upload-icon">📄</div>
-
-          <h2>Upload Your Code</h2>
-
-          <p>Upload a Java, JavaScript, Python, or C++ file.</p>
-
-          <label htmlFor="codeFile" className="file-label">
-            {file ? "Change File" : "Choose Code File"}
-          </label>
-
-          <input
-            id="codeFile"
-            type="file"
-            className="file-input"
-            accept=".java,.js,.py,.cpp,.c"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-
-          {file && (
-            <div className="selected-file">
-              <span>📎</span>
-              <span>{file.name}</span>
+        {/* Upload */}
+        <section className="interview-upload-card">
+          <div className="upload-content">
+            <div className="upload-icon-wrapper">
+              <div className="upload-icon">&lt;/&gt;</div>
             </div>
-          )}
 
-          <button
-            className="generate-button"
-            onClick={handleGenerateQuestions}
-            disabled={loading}
-          >
-            {loading ? "⏳ Generating..." : "✨ Generate Questions"}
-          </button>
-        </div>
+            <div className="upload-text">
+              <span className="upload-label">STEP 01</span>
 
-        {/* Newly Generated Questions */}
+              <h2>Upload your source code</h2>
+
+              <p>Supported files: Java, JavaScript, Python, C and C++.</p>
+            </div>
+          </div>
+
+          <div className="upload-controls">
+            <label htmlFor="codeFile" className="file-select-button">
+              <span>+</span>
+              {file ? "Change File" : "Choose Code File"}
+            </label>
+
+            <input
+              id="codeFile"
+              type="file"
+              className="file-input"
+              accept=".java,.js,.py,.cpp,.c"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+
+            {file && (
+              <div className="selected-file">
+                <div className="selected-file-icon">&lt;/&gt;</div>
+
+                <div className="selected-file-info">
+                  <span>SELECTED FILE</span>
+                  <strong>{file.name}</strong>
+                </div>
+
+                <div className="file-check">✓</div>
+              </div>
+            )}
+
+            <button
+              className="generate-button"
+              onClick={handleGenerateQuestions}
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <span className="loading-spinner"></span>
+                  Generating Questions...
+                </>
+              ) : (
+                <>
+                  Generate Questions
+                  <span>→</span>
+                </>
+              )}
+            </button>
+          </div>
+        </section>
+
+        {/* Generated Questions */}
         {questions && (
           <section className="questions-section">
             <div className="questions-heading">
               <div>
-                <span className="section-label">AI ANALYSIS</span>
-                <h2>Generated Interview Questions</h2>
+                <div className="section-label">
+                  <span></span>
+                  AI GENERATED
+                </div>
+
+                <h2>Interview Questions</h2>
+
+                <p>Questions generated from your uploaded source code.</p>
               </div>
 
-              <span className="question-count">
-                {questions.length} Questions
-              </span>
+              <div className="question-count">
+                <strong>{questions.length}</strong>
+                <span>QUESTIONS</span>
+              </div>
             </div>
 
             <div className="questions-list">
               {questions.map((item, index) => (
                 <article className="question-card" key={index}>
-                  <div className="question-top">
-                    <span className="question-number">
+                  <div className="question-card-header">
+                    <div className="question-number">
                       {String(index + 1).padStart(2, "0")}
-                    </span>
+                    </div>
 
                     <span
                       className={`difficulty ${item.difficulty
@@ -176,7 +220,10 @@ function InterviewQuestions() {
                   <h3>{item.question}</h3>
 
                   <div className="answer-box">
-                    <div className="answer-title">💡 Answer</div>
+                    <div className="answer-title">
+                      <span>✦</span>
+                      Suggested Answer
+                    </div>
 
                     <p>{item.answer}</p>
                   </div>
@@ -186,50 +233,106 @@ function InterviewQuestions() {
           </section>
         )}
 
-        {/* MongoDB History */}
+        {/* Interview History */}
         {history.length > 0 && (
-          <section className="questions-section">
+          <section className="questions-section history-section">
             <div className="questions-heading">
               <div>
-                <span className="section-label">MONGODB HISTORY</span>
-                <h2>Previous Interview Questions</h2>
+                <div className="section-label">
+                  <span></span>
+                  SAVED SESSIONS
+                </div>
+
+                <h2>Interview History</h2>
+
+                <p>
+                  Your previous AI-generated interview preparation sessions.
+                </p>
               </div>
 
-              <span className="question-count">{history.length} Sessions</span>
+              <div className="question-count">
+                <strong>{history.length}</strong>
+                <span>SESSIONS</span>
+              </div>
             </div>
 
-            <div className="questions-list">
-              {history.map((item, index) => (
-                <article className="question-card" key={item._id || index}>
-                  <div className="question-top">
-                    <span className="question-number">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+            <div className="history-list">
+              {history.map((item, index) => {
+                const isOpen = openHistory === index;
 
-                    <span className="difficulty">{item.fileName}</span>
-                  </div>
+                return (
+                  <article
+                    className={`history-session ${
+                      isOpen ? "history-session-open" : ""
+                    }`}
+                    key={item._id || index}
+                  >
+                    <button
+                      className="history-session-header"
+                      onClick={() => toggleHistory(index)}
+                    >
+                      <div className="history-session-left">
+                        <div className="history-file-icon">&lt;/&gt;</div>
 
-                  {item.questions.map((question, questionIndex) => (
-                    <div key={questionIndex}>
-                      <h3>{question.question}</h3>
+                        <div className="history-session-info">
+                          <span>CODE FILE</span>
+                          <h3>{item.fileName}</h3>
 
-                      <div className="answer-box">
-                        <div className="answer-title">💡 Answer</div>
+                          <div className="history-meta">
+                            <span>{item.questions.length} Questions</span>
+                            <span>•</span>
+                            <span>AI Generated</span>
+                          </div>
+                        </div>
+                      </div>
 
-                        <p>{question.answer}</p>
+                      <div className="history-session-right">
+                        <span className="history-session-number">
+                          #{String(index + 1).padStart(2, "0")}
+                        </span>
 
-                        <span
-                          className={`difficulty ${question.difficulty
-                            ?.toLowerCase()
-                            .replace(/\s+/g, "-")}`}
-                        >
-                          {question.difficulty}
+                        <span className="history-toggle">
+                          {isOpen ? "−" : "+"}
                         </span>
                       </div>
-                    </div>
-                  ))}
-                </article>
-              ))}
+                    </button>
+
+                    {isOpen && (
+                      <div className="history-session-content">
+                        {item.questions.map((question, questionIndex) => (
+                          <div className="history-question" key={questionIndex}>
+                            <div className="history-question-top">
+                              <span>
+                                Question{" "}
+                                {String(questionIndex + 1).padStart(2, "0")}
+                              </span>
+
+                              <span
+                                className={`difficulty ${question.difficulty
+                                  ?.toLowerCase()
+                                  .replace(/\s+/g, "-")}`}
+                              >
+                                {question.difficulty}
+                              </span>
+                            </div>
+
+                            <h4>{question.question}</h4>
+
+                            <div className="answer-box">
+                              <div className="answer-title">
+                                <span>✦</span>
+                                Suggested Answer
+                              </div>
+
+                              <p>{question.answer}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </article>
+                );
+              })}
             </div>
           </section>
         )}
