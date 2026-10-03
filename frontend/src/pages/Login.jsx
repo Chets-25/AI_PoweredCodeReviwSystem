@@ -46,11 +46,6 @@ function Login() {
 
   return (
     <main className="login-page">
-      <div className="login-background">
-        <div className="login-glow login-glow-one"></div>
-        <div className="login-glow login-glow-two"></div>
-      </div>
-
       <section className="login-card">
         <div className="login-brand">
           <div className="login-logo">⌬</div>
@@ -61,16 +56,11 @@ function Login() {
         </div>
 
         <div className="login-header">
-          <div className="login-badge">
-            <span></span>
-            SECURE ACCESS
-          </div>
-
           <h1>
             Welcome <span>Back</span>
           </h1>
 
-          <p>Sign in to continue your AI-powered code analysis journey.</p>
+          <p>Sign in to your AutoShield AI account.</p>
         </div>
 
         <form onSubmit={handleLogin} className="login-form">
@@ -122,11 +112,6 @@ function Login() {
             <Link to="/register"> Create an account</Link>
           </p>
         </form>
-
-        <div className="login-security">
-          <span>✓</span>
-          <p>Your account information is securely protected.</p>
-        </div>
       </section>
     </main>
   );

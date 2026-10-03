@@ -44,11 +44,6 @@ function Register() {
 
   return (
     <main className="register-page">
-      <div className="register-background">
-        <div className="register-glow register-glow-one"></div>
-        <div className="register-glow register-glow-two"></div>
-      </div>
-
       <section className="register-card">
         <div className="register-brand">
           <div className="register-logo">⌬</div>
@@ -59,16 +54,11 @@ function Register() {
         </div>
 
         <div className="register-header">
-          <div className="register-badge">
-            <span></span>
-            GET STARTED
-          </div>
-
           <h1>
             Create <span>Account</span>
           </h1>
 
-          <p>Join AutoShield AI and start analyzing your code with AI.</p>
+          <p>Create your AutoShield AI account to get started.</p>
         </div>
 
         <form onSubmit={handleRegister} className="register-form">
@@ -133,11 +123,6 @@ function Register() {
             <Link to="/login"> Login here</Link>
           </p>
         </form>
-
-        <div className="register-security">
-          <span>✓</span>
-          <p>Your account information is securely protected.</p>
-        </div>
       </section>
     </main>
   );

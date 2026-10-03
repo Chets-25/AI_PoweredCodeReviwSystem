@@ -51,11 +51,6 @@ function History() {
     <main className="history-page">
       <section className="history-hero">
         <div>
-          <div className="history-badge">
-            <span></span>
-            YOUR ANALYSIS HISTORY
-          </div>
-
           <h1>
             Review <span>History</span>
           </h1>
@@ -75,8 +70,6 @@ function History() {
         <section className="empty-history">
           <div className="empty-icon">⌬</div>
 
-          <span className="empty-label">NO REVIEWS FOUND</span>
-
           <h2>Your review history is empty</h2>
 
           <p>
@@ -91,20 +84,6 @@ function History() {
         </section>
       ) : (
         <section className="history-content">
-          <div className="history-summary">
-            <div>
-              <span className="summary-label">TOTAL REVIEWS</span>
-              <strong>{history.length}</strong>
-            </div>
-
-            <div className="summary-divider"></div>
-
-            <div>
-              <span className="summary-label">AI ANALYSIS</span>
-              <strong>Completed</strong>
-            </div>
-          </div>
-
           <div className="history-list">
             {history.map((item, index) => (
               <article key={item._id} className="history-card">
@@ -128,11 +107,6 @@ function History() {
                     <span>
                       <small>LANGUAGE</small>
                       {item.language}
-                    </span>
-
-                    <span>
-                      <small>TYPE</small>
-                      AI Code Review
                     </span>
                   </div>
                 </div>

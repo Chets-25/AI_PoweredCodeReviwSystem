@@ -5,11 +5,6 @@ function About() {
   return (
     <main className="about-page">
       <section className="about-hero">
-        <div className="about-badge">
-          <span></span>
-          ABOUT AUTOSHIELD AI
-        </div>
-
         <h1>
           Smarter Code. <span>Better Software.</span>
         </h1>
@@ -69,10 +64,8 @@ function About() {
 
       <section className="about-platform">
         <div>
-          <span className="about-section-label">THE PLATFORM</span>
-
           <h2>
-            Built for the <span>next generation</span> of developers.
+            Everything you need for <span>better development.</span>
           </h2>
         </div>
 

@@ -6,11 +6,6 @@ function Home() {
     <main className="home-page">
       <section className="hero-section">
         <div className="hero-content">
-          <div className="feature-badge">
-            <span className="badge-dot"></span>
-            AI-Powered Code Intelligence
-          </div>
-
           <h1>
             Write Better Code.
             <span> Ship With Confidence.</span>
@@ -31,27 +26,6 @@ function Home() {
             <Link to="/interview-questions" className="secondary-action">
               Practice Interviews
             </Link>
-          </div>
-
-          <div className="hero-stats">
-            <div>
-              <strong>AI</strong>
-              <span>Powered Analysis</span>
-            </div>
-
-            <div className="stat-divider"></div>
-
-            <div>
-              <strong>8+</strong>
-              <span>Analysis Areas</span>
-            </div>
-
-            <div className="stat-divider"></div>
-
-            <div>
-              <strong>24/7</strong>
-              <span>Available</span>
-            </div>
           </div>
         </div>
 
@@ -107,8 +81,8 @@ function Home() {
 
       <section className="features-section">
         <div className="section-heading">
-          <span>POWERFUL ANALYSIS</span>
           <h2>Everything your code needs</h2>
+
           <p>
             Get intelligent feedback across the most important areas of software
             quality.
@@ -118,7 +92,9 @@ function Home() {
         <div className="features">
           <div className="feature-card">
             <div className="feature-icon">⌁</div>
+
             <h2>Bug Detection</h2>
+
             <p>
               Find logical errors and potential bugs before they become real
               problems.
@@ -127,7 +103,9 @@ function Home() {
 
           <div className="feature-card">
             <div className="feature-icon">◇</div>
+
             <h2>Security Analysis</h2>
+
             <p>
               Identify potential vulnerabilities and security risks in your
               code.
@@ -136,7 +114,9 @@ function Home() {
 
           <div className="feature-card">
             <div className="feature-icon">↗</div>
+
             <h2>Performance</h2>
+
             <p>
               Discover performance issues and practical ways to make your code
               more efficient.
@@ -145,7 +125,9 @@ function Home() {
 
           <div className="feature-card">
             <div className="feature-icon">✦</div>
+
             <h2>AI Suggestions</h2>
+
             <p>
               Receive practical recommendations to improve readability,
               maintainability, and quality.

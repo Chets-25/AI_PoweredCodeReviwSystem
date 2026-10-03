@@ -64,11 +64,6 @@ function Profile() {
       <section className="profile-container">
         {/* Header */}
         <div className="profile-title">
-          <div className="profile-badge">
-            <span></span>
-            ACCOUNT
-          </div>
-
           <h1>
             Your <span>Profile</span>
           </h1>
@@ -76,7 +71,7 @@ function Profile() {
           <p>Manage and view your AutoShield AI account information.</p>
         </div>
 
-        {/* Profile Card */}
+        {/* Profile card */}
         <section className="profile-card">
           <div className="profile-top">
             <div className="profile-avatar">
@@ -84,27 +79,16 @@ function Profile() {
             </div>
 
             <div className="profile-heading">
-              <div className="profile-name-row">
-                <h2>{user.name}</h2>
-
-                <span className="active-badge">
-                  <span></span>
-                  Active
-                </span>
-              </div>
-
+              <h2>{user.name}</h2>
               <p>AutoShield AI User</p>
             </div>
           </div>
 
           <div className="profile-divider"></div>
 
-          {/* Account Information */}
+          {/* Account information */}
           <div className="profile-section-header">
-            <div>
-              <span className="section-label">ACCOUNT DETAILS</span>
-              <h3>Personal Information</h3>
-            </div>
+            <h3>Personal Information</h3>
           </div>
 
           <div className="profile-info">
@@ -146,7 +130,7 @@ function Profile() {
           </div>
         </section>
 
-        {/* Account Footer */}
+        {/* Footer */}
         <div className="profile-footer-card">
           <div className="footer-icon">&lt;/&gt;</div>
 
@@ -154,8 +138,6 @@ function Profile() {
             <h3>AutoShield AI</h3>
             <p>AI-powered code analysis and interview preparation platform.</p>
           </div>
-
-          <span className="profile-version">AI PLATFORM</span>
         </div>
       </section>
     </main>

@@ -4,19 +4,11 @@ import "./NotFound.css";
 function NotFound() {
   return (
     <main className="notfound-page">
-      <div className="notfound-glow notfound-glow-one"></div>
-      <div className="notfound-glow notfound-glow-two"></div>
-
       <section className="notfound-card">
         <div className="notfound-code">404</div>
 
-        <div className="notfound-badge">
-          <span></span>
-          PAGE NOT FOUND
-        </div>
-
         <h1>
-          Looks like you took a <span>wrong turn.</span>
+          Page <span>Not Found</span>
         </h1>
 
         <p>

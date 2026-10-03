@@ -20,6 +20,7 @@ function Navbar() {
 
       <div className="navbar-links">
         <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
         <Link to="/review">Review</Link>
         <Link to="/history">History</Link>
         <Link to="/interview-questions">Interview</Link>

@@ -100,11 +100,6 @@ function InterviewQuestions() {
       <section className="interview-container">
         {/* Hero */}
         <div className="interview-header">
-          <div className="interview-badge">
-            <span className="badge-dot"></span>
-            AI INTERVIEW PREP
-          </div>
-
           <h1>
             Turn Your Code Into
             <span> Interview Questions.</span>
@@ -124,8 +119,6 @@ function InterviewQuestions() {
             </div>
 
             <div className="upload-text">
-              <span className="upload-label">STEP 01</span>
-
               <h2>Upload your source code</h2>
 
               <p>Supported files: Java, JavaScript, Python, C and C++.</p>
@@ -151,7 +144,6 @@ function InterviewQuestions() {
                 <div className="selected-file-icon">&lt;/&gt;</div>
 
                 <div className="selected-file-info">
-                  <span>SELECTED FILE</span>
                   <strong>{file.name}</strong>
                 </div>
 
@@ -179,16 +171,11 @@ function InterviewQuestions() {
           </div>
         </section>
 
-        {/* Generated Questions */}
+        {/* Questions */}
         {questions && (
           <section className="questions-section">
             <div className="questions-heading">
               <div>
-                <div className="section-label">
-                  <span></span>
-                  AI GENERATED
-                </div>
-
                 <h2>Interview Questions</h2>
 
                 <p>Questions generated from your uploaded source code.</p>
@@ -196,7 +183,7 @@ function InterviewQuestions() {
 
               <div className="question-count">
                 <strong>{questions.length}</strong>
-                <span>QUESTIONS</span>
+                <span>Questions</span>
               </div>
             </div>
 
@@ -233,26 +220,19 @@ function InterviewQuestions() {
           </section>
         )}
 
-        {/* Interview History */}
+        {/* History */}
         {history.length > 0 && (
           <section className="questions-section history-section">
             <div className="questions-heading">
               <div>
-                <div className="section-label">
-                  <span></span>
-                  SAVED SESSIONS
-                </div>
-
                 <h2>Interview History</h2>
 
-                <p>
-                  Your previous AI-generated interview preparation sessions.
-                </p>
+                <p>Your previous interview preparation sessions.</p>
               </div>
 
               <div className="question-count">
                 <strong>{history.length}</strong>
-                <span>SESSIONS</span>
+                <span>Sessions</span>
               </div>
             </div>
 
@@ -275,13 +255,10 @@ function InterviewQuestions() {
                         <div className="history-file-icon">&lt;/&gt;</div>
 
                         <div className="history-session-info">
-                          <span>CODE FILE</span>
                           <h3>{item.fileName}</h3>
 
                           <div className="history-meta">
                             <span>{item.questions.length} Questions</span>
-                            <span>•</span>
-                            <span>AI Generated</span>
                           </div>
                         </div>
                       </div>
